@@ -1,0 +1,198 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a private API developed for Ajudaris",
+        "version": "0.0.1",
+        "title": "Ajudaris API",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "email": "apiteam@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "host": "127.0.0.1:3000",
+    "tags": [{
+            "name": "users",
+            "description": "All users routes"
+        },
+        {
+            "name": "admin",
+            "description": "Restricted access routes"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/user/login": {
+            "post": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Logs a user in",
+                "description": "Logs a user in",
+                "operationId": "loginUser",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "Login user info",
+                    "required": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "email": {
+                                "type": "string"
+                            },
+                            "password": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Error"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    }
+                }
+            }
+        },
+        "/user/register": {
+            "post": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Creates a new user",
+                "description": "Creates a new user",
+                "operationId": "registerUser",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "New user info",
+                    "required": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "password": {
+                                "type": "string"
+                            },
+                            "email": {
+                                "type": "string"
+                            },
+                            "age": {
+                                "type": "integer",
+                                "format": "int64"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "descritpion": "Error"
+                    },
+                    "406": {
+                        "description": "Duplicated User"
+                    }
+                }
+            }
+        },
+        "/admin/login": {
+            "post": {
+                "tags": [
+                    "admin"
+                ],
+                "summary": "Logs an admin in",
+                "description": "Logs an admin in",
+                "operationId": "loginAdmin",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "Admin info",
+                    "required": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "username": {
+                                "type": "string"
+                            },
+                            "password": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Error"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    }
+                }
+            }
+        },
+        "/admin/users/listAll": {
+            "get": {
+                "tags": [
+                    "admin"
+                ],
+                "summary": "Lists all users",
+                "description": "Lists all users",
+                "operationId": "listAllUsers",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "type": "array"
+                    },
+                    "400": {
+                        "description": "Error"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    }
+                }
+            }
+        }
+    }
+}
